@@ -1,0 +1,33 @@
+{
+  "name": "statsig-lib-test-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/statsig-lib-test-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/statsig-lib-test-e2e/cypress.config.ts",
+        "devServerTarget": "statsig-lib-test:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "statsig-lib-test:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "statsig-lib-test:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/statsig-lib-test-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["statsig-lib-test"]
+}
