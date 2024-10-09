@@ -1,0 +1,70 @@
+{
+  "name": "feature-flags",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/feature-flags/src",
+  "prefix": "apz-statsig",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "libs/feature-flags/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/feature-flags/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/feature-flags/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "libs/feature-flags/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/feature-flags/**/*.ts",
+          "libs/feature-flags/**/*.html"
+        ]
+      }
+    },
+    "watch": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "commands": [
+          "nx run feature-flags:build --watch "
+        ]
+      },
+      "dependsOn": [
+        "build"
+      ]
+    }
+  }
+}

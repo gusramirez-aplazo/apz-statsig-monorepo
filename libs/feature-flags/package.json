@@ -1,0 +1,14 @@
+{
+  "name": "@aplazo/front-feature-flags",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0",
+    "@statsig/client-core": "^3.1.0",
+    "@statsig/js-client": "^3.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
